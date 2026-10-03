@@ -1,7 +1,7 @@
 {
-  "version": "0.2.1",
+  "version": "0.3.0",
   "requires_php": "7.4",
-  "package": "https://github.com/TVanmeerhaeghe/maint-agent-releases/releases/download/v0.2.1/maint-agent-0.2.1.zip",
-  "sha256": "efa970ddb63505cd1ed5317cdd905d05ee9a0c526aa41cce3ffd069cadc60c59",
-  "signature": "OaVLM6ZVNQL/DPiShCvXTQnggHx/NFFC7RIw/rhRcS5wrMR+8VQclIFkdBI7KoG7KnfjrjbVk32rh8gQoExoDA=="
+  "package": "https://github.com/TVanmeerhaeghe/maint-agent-releases/releases/download/v0.3.0/maint-agent-0.3.0.zip",
+  "sha256": "0d384e30d2d5610060d746340ea423cab7468715dc530bf13393e8716e5ad8f0",
+  "signature": "nax8HCAgR6gon7Snne3+/Nykw7X8Uf6fSmd1PIcj6VJ/zie/7WpYJOpgx8CwLYdldaGrxz66WVQa8AU9GHj2AA=="
 }
