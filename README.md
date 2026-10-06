@@ -1,47 +1,38 @@
 # maint-agent-releases
 
-Versions publiées de **Maint Agent**, le plugin WordPress en lecture seule de l'outil de maintenance `tv/maintenance`.
+Versions publiées de **Maint Agent**, le plugin WordPress de l'outil de maintenance `tv/maintenance`.
 
-Ce dépôt ne contient pas de code : les versions sont uniquement des **pièces jointes de releases**. Rien n'est lu depuis la branche.
+Le plugin est **en lecture seule** : il transmet à l'outil l'inventaire du site (versions de WordPress, de PHP, des extensions et des thèmes, mises à jour disponibles). Il ne modifie rien, n'a pas d'interface d'administration et n'a aucune dépendance.
+
+Ce dépôt ne contient pas de code. Les versions sont publiées uniquement en **pièces jointes des releases**.
+
+## Installation et mises à jour
+
+- **Installation** : le plugin est fourni préconfiguré par l'outil de maintenance qui suit le site. Le zip publié ici ne contient pas cette configuration : seul, il ne peut communiquer avec aucun outil.
+- **Mises à jour** : elles apparaissent dans **Extensions** de WordPress, comme pour toute extension. Elles sont manuelles par défaut, et l'administrateur du site peut activer les mises à jour automatiques.
+- **Prérequis** : WordPress 5.8 et PHP 7.4 au minimum.
 
 ## Contenu d'une release
-
-Chaque release `vX.Y.Z` porte trois fichiers :
 
 | Fichier | Rôle |
 |---|---|
 | `maint-agent-X.Y.Z.zip` | Le plugin |
-| `latest.json` | Le manifeste : version, PHP minimum, empreinte SHA-256 du zip, signé par une clé de publication |
+| `latest.json` | Le manifeste : version, PHP minimum et empreinte SHA-256 du zip, signés par une clé de publication |
 | `keys.json` | La liste des clés de publication valables, signée par la clé racine |
 
-Les sites et l'outil lisent toujours la release marquée **Latest**, via :
+## Sécurité des mises à jour
 
-```
-https://github.com/TVanmeerhaeghe/maint-agent-releases/releases/latest/download/keys.json
-https://github.com/TVanmeerhaeghe/maint-agent-releases/releases/latest/download/latest.json
-```
+Ce dépôt n'est pas considéré comme sûr : seules les signatures font foi. Avant d'installer une mise à jour, le plugin :
 
-## Vérification
-
-Ce dépôt n'est **pas** de confiance : un fichier modifié ici est refusé. Avant toute installation, le plugin :
-
-1. vérifie `keys.json` avec la clé publique racine inscrite dans son code, et refuse une version plus ancienne que la plus récente déjà vue (anti-retour) ;
+1. vérifie `keys.json` avec la clé publique racine inscrite dans son code, et refuse une liste plus ancienne que la plus récente déjà vue ;
 2. vérifie que `latest.json` est signé par l'une des clés de `keys.json` ;
 3. n'accepte qu'une version plus récente que celle installée ;
-4. télécharge le zip et refuse toute empreinte différente de celle signée.
+4. refuse tout zip dont l'empreinte diffère de celle signée.
 
-Au moindre échec, aucune mise à jour. Il n'y a pas de repli.
+Au moindre échec, la mise à jour n'est pas installée. Les signatures utilisent Ed25519, et les clés privées ne sont jamais en ligne.
 
-Les clés privées ne sont jamais dans ce dépôt : chiffrées par phrase de passe, elles sont conservées hors ligne.
+Clé publique racine :
 
-## Publier une version
-
-Depuis le dépôt de l'outil, clé USB branchée :
-
-```sh
-npm run agent:release -- <clé de publication> <keys.json>
 ```
-
-Puis créer une release `vX.Y.Z`, y joindre les **trois** fichiers produits dans `dist/` et la marquer comme **Latest**.
-
-Ne jamais supprimer ni modifier une release publiée : les sites en cours de mise à jour s'y réfèrent.
+tbJpwmRQ/zLKpDwrkkZKmtYhmQRQuOdpxXMeWZWjDCc=
+```
