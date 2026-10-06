@@ -14,11 +14,11 @@ Ce dépôt ne contient pas de code. Les versions sont publiées uniquement en **
 
 ## Contenu d'une release
 
-| Fichier | Rôle |
-|---|---|
-| `maint-agent-X.Y.Z.zip` | Le plugin |
-| `latest.json` | Le manifeste : version, PHP minimum et empreinte SHA-256 du zip, signés par une clé de publication |
-| `keys.json` | La liste des clés de publication valables, signée par la clé racine |
+| Fichier                 | Rôle                                                                                               |
+| ----------------------- | -------------------------------------------------------------------------------------------------- |
+| `maint-agent-X.Y.Z.zip` | Le plugin                                                                                          |
+| `latest.json`           | Le manifeste : version, PHP minimum et empreinte SHA-256 du zip, signés par une clé de publication |
+| `keys.json`             | La liste des clés de publication valables, signée par la clé racine                                |
 
 ## Sécurité des mises à jour
 
@@ -30,9 +30,3 @@ Ce dépôt n'est pas considéré comme sûr : seules les signatures font foi. Av
 4. refuse tout zip dont l'empreinte diffère de celle signée.
 
 Au moindre échec, la mise à jour n'est pas installée. Les signatures utilisent Ed25519, et les clés privées ne sont jamais en ligne.
-
-Clé publique racine :
-
-```
-tbJpwmRQ/zLKpDwrkkZKmtYhmQRQuOdpxXMeWZWjDCc=
-```
